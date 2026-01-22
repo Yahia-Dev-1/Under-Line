@@ -9,8 +9,8 @@ import SavedTranslations from './components/SavedTranslations';
 import { setupArabicTTSListener } from './utils/arabicTTS';
 import { speakWithAccent, speakAutoDetectAccent } from './utils/accentTTS';
 
-// Point to Vercel Serverless Function
-const N8N_WEBHOOK_URL = "/api/translate";
+// Point to our new local Node.js backend
+const N8N_WEBHOOK_URL = "http://localhost:3000/translate";
 
 function App() {
   const [showViewer, setShowViewer] = useState(false);

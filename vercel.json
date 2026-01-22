@@ -3,20 +3,13 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "/dist/$1"
     }
-  ],
-  "env": {
-    "GEMINI_API_KEY": "AIzaSyChdGB4tqgWYjVpR-AuBVnGFGkblhfNQUc"
-  }
+  ]
 }

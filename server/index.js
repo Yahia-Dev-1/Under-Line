@@ -23,13 +23,16 @@ const app = express();
 const upload = multer();
 const PORT = process.env.PORT || 3000;
 
+// Serve Front-End Static Files
+app.use(express.static(path.join(__dirname, "public")));
+
 // Basic Routes
 app.get("/", (req, res) => {
-  res.send("Server is working!");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.get("/api/test", (req, res) => {
-  res.json({ message: "API works!" });
+  res.json({ message: "API works!", timestamp: new Date().toISOString() });
 });
 
 // Database file paths (simple JSON storage)

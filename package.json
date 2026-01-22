@@ -10,11 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "arabic-persian-reshaper": "^1.0.1",
-    "bidi-js": "^1.0.3",
-    "exceljs": "^4.4.0",
-    "lightningcss-win32-x64-msvc": "^1.30.2",
-    "mammoth": "^1.11.0",
+    "@google/generative-ai": "^0.24.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

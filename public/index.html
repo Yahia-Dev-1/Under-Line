@@ -3,134 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Under-Line API Test</title>
+  <title>Under-Line Translation</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      padding: 2rem; 
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
+    
     .container {
-      max-width: 800px;
-      margin: 0 auto;
       background: white;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
     }
+    
     h1 {
       color: #333;
-      text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+    }
+    
+    .logo {
+      font-weight: 800;
       background: linear-gradient(45deg, #667eea, #764ba2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      margin-bottom: 10px;
     }
-    .buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+    
+    p {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
     }
-    button { 
-      padding: 0.75rem 1.5rem; 
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: transform 0.2s;
+    
+    .feature {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      text-align: left;
     }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    pre { 
-      background: #f8f9fa; 
-      padding: 1.5rem; 
-      border-radius: 10px;
-      overflow-x: auto;
-      border-left: 4px solid #667eea;
-    }
-    .loading {
+    
+    .feature h3 {
       color: #667eea;
-      font-style: italic;
+      margin-bottom: 10px;
     }
-    .error {
-      color: #e74c3c;
-      background: #ffeaea;
-      border-left-color: #e74c3c;
+    
+    .feature ul {
+      padding-left: 20px;
     }
-    .success {
-      color: #27ae60;
+    
+    .feature li {
+      margin: 8px 0;
+      color: #555;
+    }
+    
+    .status {
+      margin-top: 30px;
+      padding: 15px;
+      border-radius: 10px;
       background: #e8f5e8;
-      border-left-color: #27ae60;
+      color: #27ae60;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>UNDER-LINE API TEST</h1>
+    <h1 class="logo">UNDER-LINE</h1>
+    <p>AI-Powered Document Translation Platform</p>
     
-    <div class="buttons">
-      <button id="fetchTest">Test /api/test (GET)</button>
-      <button id="fetchPost">Test /api/test (POST)</button>
+    <div class="feature">
+      <h3>✨ Key Features</h3>
+      <ul>
+        <li>📄 PDF, Word, and Text file translation</li>
+        <li>🔊 Native accent pronunciation for multiple languages</li>
+        <li>🎯 Selective word translation</li>
+        <li>💾 Save and organize translations</li>
+        <li>📱 Responsive design for all devices</li>
+      </ul>
     </div>
     
-    <pre id="result">Click a button to test the API endpoints</pre>
+    <div class="feature">
+      <h3>🌐 Supported Languages</h3>
+      <ul>
+        <li>English, Arabic, French, Spanish</li>
+        <li>German, Italian, Portuguese, Russian</li>
+        <li>Chinese, Japanese, Korean, Hindi</li>
+        <li>Czech, Polish, Turkish, Dutch</li>
+      </ul>
+    </div>
+    
+    <div class="status">
+      ✅ System Online and Ready
+    </div>
   </div>
-
-  <script>
-    const testButton = document.getElementById("fetchTest");
-    const postButton = document.getElementById("fetchPost");
-    const result = document.getElementById("result");
-
-    testButton.addEventListener("click", async () => {
-      try {
-        result.textContent = "Loading...";
-        result.className = "loading";
-        
-        const res = await fetch("/api/test");
-        const data = await res.json();
-        
-        result.textContent = JSON.stringify(data, null, 2);
-        result.className = "success";
-      } catch (err) {
-        result.textContent = "Error: " + err.message;
-        result.className = "error";
-      }
-    });
-
-    postButton.addEventListener("click", async () => {
-      try {
-        result.textContent = "Loading...";
-        result.className = "loading";
-        
-        const res = await fetch("/api/test", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            text: "Hello World",
-            targetLanguage: "Arabic"
-          })
-        });
-        
-        const data = await res.json();
-        result.textContent = JSON.stringify(data, null, 2);
-        result.className = "success";
-      } catch (err) {
-        result.textContent = "Error: " + err.message;
-        result.className = "error";
-      }
-    });
-  </script>
 </body>
 </html>

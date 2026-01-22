@@ -21,7 +21,7 @@ const pdfjsLib = require('pdfjs-dist/legacy/build/pdf.js');
 // --- CONFIG ---
 const app = express();
 const upload = multer();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Database file paths (simple JSON storage)
 const DATA_DIR = path.join(__dirname, 'data');

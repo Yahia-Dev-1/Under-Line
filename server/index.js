@@ -23,6 +23,15 @@ const app = express();
 const upload = multer();
 const PORT = process.env.PORT || 3000;
 
+// Basic Routes
+app.get("/", (req, res) => {
+  res.send("Server is working!");
+});
+
+app.get("/api/test", (req, res) => {
+  res.json({ message: "API works!" });
+});
+
 // Database file paths (simple JSON storage)
 const DATA_DIR = path.join(__dirname, 'data');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');

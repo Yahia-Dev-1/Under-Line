@@ -160,40 +160,35 @@ const detectLanguageSimple = (text) => {
   const trimmedText = text.trim().substring(0, 100).toLowerCase();
   
   // Arabic script detection
-  if (/[؀-ۿ]/.test(trimmedText)) {
+  if (/[\u0600-\u06FF]/.test(trimmedText)) {
     return 'ar';
   }
   
   // Chinese characters detection
-  if (/[一-鿿]/.test(trimmedText)) {
+  if (/[\u4E00-\u9FFF]/.test(trimmedText)) {
     return 'zh';
   }
   
   // Japanese characters detection
-  if (/[぀-ゟ゠-ヿ]/.test(trimmedText)) {
+  if (/[\u3040-\u309F\u30A0-\u30FF]/.test(trimmedText)) {
     return 'ja';
   }
   
   // Korean characters detection
-  if (/[가-힯]/.test(trimmedText)) {
+  if (/[\uAC00-\uD7AF]/.test(trimmedText)) {
     return 'ko';
   }
   
   // Hindi/Devanagari detection
-  if (/[ऀ-ॿ]/.test(trimmedText)) {
+  if (/[\u0900-\u097F]/.test(trimmedText)) {
     return 'hi';
   }
   
   // Thai characters detection
-  if (/[฀-๿]/.test(trimmedText)) {
+  if (/[\u0E00-\u0E7F]/.test(trimmedText)) {
     return 'th';
   }
-    
-  // Czech characters detection
-  if (/[ČčŠšŽžŘřŤťŇňĎďĚěŮů]/.test(trimmedText)) {
-    return 'cs';
-  }
-    
+  
   // For European languages, we might need more sophisticated detection
   // But for now, default to English
   return 'en';

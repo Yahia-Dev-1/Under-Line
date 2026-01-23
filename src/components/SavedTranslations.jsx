@@ -12,7 +12,7 @@ const SavedTranslations = ({ user, onViewTranslation, onBack, filterMode = 'all'
     const fetchTranslations = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3000/translations', {
+            const response = await fetch('/translations', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

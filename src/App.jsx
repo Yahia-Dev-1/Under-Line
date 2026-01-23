@@ -10,7 +10,7 @@ import { setupArabicTTSListener } from './utils/arabicTTS';
 import { speakWithAccent, speakAutoDetectAccent } from './utils/accentTTS';
 
 // Point to our new local Node.js backend
-const N8N_WEBHOOK_URL = "http://localhost:3000/translate";
+const N8N_WEBHOOK_URL = "/translate";
 
 function App() {
   const [showViewer, setShowViewer] = useState(false);
@@ -180,7 +180,7 @@ function App() {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const saveRes = await fetch('http://localhost:3000/translations', {
+          const saveRes = await fetch('http://localhost:3001/translations', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -224,7 +224,7 @@ function App() {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3000/translations', {
+      const response = await fetch('http://localhost:3001/translations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

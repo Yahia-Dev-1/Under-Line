@@ -512,7 +512,7 @@ const UnderLineViewer = ({ file, isLoading, error }) => {
             const translated = localLines.map(l => l.translation || '').join('<<<|||>>>');
             const segmentsJson = JSON.stringify(localLines);
             
-            const resp = await fetch('http://0.0.0.0:5000/download-pdf', {
+            const resp = await fetch('/download-pdf', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 

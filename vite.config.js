@@ -6,12 +6,26 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/n8n': {
-        target: 'http://127.0.0.1:5678',
+      '/translate': {
+        target: 'http://127.0.0.1:5000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/n8n/, ''),
         timeout: 600000, // 10 minutes timeout for large PDFs
         proxyTimeout: 600000
+      },
+      '/auth': {
+        target: 'http://127.0.0.1:5000',
+        changeOrigin: true,
+        timeout: 600000
+      },
+      '/translations': {
+        target: 'http://127.0.0.1:5000',
+        changeOrigin: true,
+        timeout: 600000
+      },
+      '/download-pdf': {
+        target: 'http://127.0.0.1:5000',
+        changeOrigin: true,
+        timeout: 600000
       }
     }
   }

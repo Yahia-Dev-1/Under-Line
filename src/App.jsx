@@ -10,7 +10,7 @@ import { setupArabicTTSListener } from './utils/arabicTTS';
 import { speakWithAccent, speakAutoDetectAccent } from './utils/accentTTS';
 
 // Point to our new local Node.js backend
-const N8N_WEBHOOK_URL = "http://localhost:5001/translate";
+const N8N_WEBHOOK_URL = "http://localhost:5000/translate";
 
 function App() {
   const [showViewer, setShowViewer] = useState(false);

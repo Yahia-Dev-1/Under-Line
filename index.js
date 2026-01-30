@@ -127,7 +127,7 @@ const authMiddleware = (req, res, next) => {
 // --- AUTH ENDPOINTS ---
 
 // Register
-app.post('/auth/register', (req, res) => {
+app.post('/api/auth/register', (req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -166,7 +166,7 @@ app.post('/auth/register', (req, res) => {
 });
 
 // Login
-app.post('/auth/login', (req, res) => {
+app.post('/api/auth/login', (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -197,14 +197,14 @@ app.post('/auth/login', (req, res) => {
 });
 
 // Get current user
-app.get('/auth/me', authMiddleware, (req, res) => {
+app.get('/api/auth/me', authMiddleware, (req, res) => {
     res.json({
         user: { id: req.user.id, name: req.user.name, email: req.user.email }
     });
 });
 
 // Logout
-app.post('/auth/logout', authMiddleware, (req, res) => {
+app.post('/api/auth/logout', authMiddleware, (req, res) => {
     const users = readUsers();
     const user = users.find(u => u.id === req.user.id);
     if (user) {
@@ -217,7 +217,7 @@ app.post('/auth/logout', authMiddleware, (req, res) => {
 // --- TRANSLATIONS ENDPOINTS ---
 
 // Save translation
-app.post('/translations', authMiddleware, (req, res) => {
+app.post('/api/translations', authMiddleware, (req, res) => {
     try {
         const { fileName, segments, targetLang, splitMode, isKeyTermsMode, isInsightMode, termCount, insightCount } = req.body;
 
@@ -247,7 +247,7 @@ app.post('/translations', authMiddleware, (req, res) => {
 });
 
 // Get user's translations
-app.get('/translations', authMiddleware, (req, res) => {
+app.get('/api/translations', authMiddleware, (req, res) => {
     try {
         const translations = readTranslations();
         const userTranslations = translations
@@ -262,7 +262,7 @@ app.get('/translations', authMiddleware, (req, res) => {
 });
 
 // Get single translation
-app.get('/translations/:id', authMiddleware, (req, res) => {
+app.get('/api/translations/:id', authMiddleware, (req, res) => {
     try {
         const translations = readTranslations();
         const translation = translations.find(t => t.id === req.params.id && t.userId === req.user.id);
@@ -279,7 +279,7 @@ app.get('/translations/:id', authMiddleware, (req, res) => {
 });
 
 // Delete translation
-app.delete('/translations/:id', authMiddleware, (req, res) => {
+app.delete('/api/translations/:id', authMiddleware, (req, res) => {
     try {
         const translations = readTranslations();
         const index = translations.findIndex(t => t.id === req.params.id && t.userId === req.user.id);
@@ -1394,7 +1394,7 @@ Do NOT provide any commentary. Return ONLY the JSON.`;
 
 // --- Main Endpoint ---
 
-app.post('/translate', upload.single('file'), async (req, res) => {
+app.post('/api/translate', upload.single('file'), async (req, res) => {
     try {
         // process.stdout.write('\x1Bc'); // Removed clear command
 
@@ -1646,7 +1646,7 @@ app.post('/translate', upload.single('file'), async (req, res) => {
 });
 
 // New: Server-side PDF Generation (2-Column Layout)
-app.post('/download-pdf', upload.single('file'), async (req, res) => {
+app.post('/api/download-pdf', upload.single('file'), async (req, res) => {
     try {
         const { original, translated, segments, mode, isLayoutPreserved, translationOnly } = req.body;
         const translationSegments = segments ? JSON.parse(segments) : [];
